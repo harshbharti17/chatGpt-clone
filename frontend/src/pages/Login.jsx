@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 const Login = () => {
   const [state, setState] = useState("login");
@@ -10,6 +10,7 @@ const Login = () => {
     e.preventDefault();
   };
 
+  
   return (
     <form
       onSubmit={handleSubmit}
