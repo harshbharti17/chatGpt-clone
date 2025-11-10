@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useAppContext } from "../context/AppContext";
 import { assets } from "../assets/assets";
-import moment from "moment"
+import moment from "moment";
 
 const Sidebar = ({ isMenuOpen, setIsMenuOpen }) => {
   const { chats, setSelectedChat, theme, setTheme, user, navigate } =
