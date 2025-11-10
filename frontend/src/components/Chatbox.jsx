@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useAppContext } from "../context/AppContext";
-import { assets } from "../assets/assets";
-import Message from "./Message";
+import {assets} from "../assets/assets";
+import Message from "./Message"
 
 const Chatbox = () => {
-  const containerRef = useRef(null);
+  const containerRef = useRef(null)
 
   const { selectedChat, theme } = useAppContext();
 
