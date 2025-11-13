@@ -8,3 +8,4 @@ creditRouter.get("/plan", getPlans);
 creditRouter.post("/purchase", protect, purchasePlan);
 
 export default creditRouter;
+
