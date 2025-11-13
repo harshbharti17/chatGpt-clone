@@ -4,6 +4,7 @@ import cors from "cors";
 import connectDB from "./configs/db.js";
 import userRouter from "./routes/user.routes.js";
 import chatRouter from "./routes/chat.routes.js";
+import messageRouter from "./routes/message.routes.js";
 
 const app = express();
 
@@ -17,6 +18,7 @@ app.use(express.json());
 app.get("/", (req, res) => res.send("Server is Live!"));
 app.use("/api/user", userRouter);
 app.use("/api/chat", chatRouter);
+app.use("/api/message", messageRouter);
 
 //Listening port
 const PORT = process.env.PORT || 3000;

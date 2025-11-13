@@ -2,11 +2,20 @@ import axios from "axios";
 import Chat from "../models/chat.model.js";
 import User from "../models/user.model.js";
 import imagekit from "../configs/imageKit.js";
+import openai from "../configs/openAI.js";
 
 //Text-based AI chat message controller
 export const textMessageController = async (req, res) => {
   try {
     const userId = req.user._id;
+    //check user credits
+    if (req.user.credits < 1) {
+      return res.json({
+        success: false,
+        message:
+          "You don't have enough credits to use this feature. Please purchase more credits.",
+      });
+    }
 
     const { chatId, promt } = req.body;
 
@@ -56,13 +65,12 @@ export const textMessageController = async (req, res) => {
 };
 
 //Image generation message controller
-
 export const imageMessageController = async (req, res) => {
   try {
     const userId = req.user._id;
 
     //check user credits
-    if (req.user.credits <= 2) {
+    if (req.user.credits < 2) {
       return res.json({
         success: false,
         message:
