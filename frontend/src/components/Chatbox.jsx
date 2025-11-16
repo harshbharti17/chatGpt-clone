@@ -11,7 +11,7 @@ const Chatbox = () => {
 
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [promt, setPromt] = useState("");
+  const [prompt, setPrompt] = useState("");
   const [mode, setMode] = useState("text");
   const [isPublished, setIsPublished] = useState(false);
 
@@ -22,18 +22,23 @@ const Chatbox = () => {
         toast("Login to send message");
       }
       setLoading(true);
-      const promtCopy = promt;
-      setPromt("");
+      const promptCopy = prompt;
+      setPrompt("");
       setMessages((prev) => [
         ...prev,
-        { role: "user", content: promt, timestamp: Date.now(), isImage: false },
+        {
+          role: "user",
+          content: prompt,
+          timestamp: Date.now(),
+          isImage: false,
+        },
       ]);
 
       const { data } = await axios.post(
         `/api/message/${mode}`,
         {
           chatId: selectedChat._id,
-          promt,
+          prompt,
           isPublished,
         },
         {
@@ -47,19 +52,19 @@ const Chatbox = () => {
         setMessages((prev) => [...prev, data.reply]);
 
         //decrease credits
-        if (mode === "image") {
+        if (mode === "Image") {
           setUser((prev) => ({ ...prev, credits: prev.credits - 2 }));
         } else {
           setUser((prev) => ({ ...prev, credits: prev.credits - 1 }));
         }
       } else {
         toast.error(data.message);
-        setPromt(promtCopy);
+        setPrompt(promptCopy);
       }
     } catch (error) {
       toast.error(error.message);
     } finally {
-      setPromt("");
+      setPrompt("");
       setLoading(false);
     }
   };
@@ -140,8 +145,8 @@ const Chatbox = () => {
           </option>
         </select>
         <input
-          onChange={(e) => setPromt(e.target.value)}
-          value={promt}
+          onChange={(e) => setPrompt(e.target.value)}
+          value={prompt}
           type="text"
           placeholder="Type your promt here..."
           className="flex-1 w-full outline-none "
