@@ -92,6 +92,7 @@ const Login = () => {
         </p>
       )}
       <button
+        // onClick={toast.success('Please wait...')}
         type="submit"
         className="bg-purple-700 hover:bg-purple-800 transition-all text-white w-full py-2 rounded-md cursor-pointer"
       >
