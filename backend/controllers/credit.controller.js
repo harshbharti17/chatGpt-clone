@@ -93,7 +93,7 @@ export const purchasePlan = async (req, res) => {
               name: plan.name,
             },
           },
-          quantity: 2,
+          quantity: 1,
         },
       ],
       mode: "payment",
